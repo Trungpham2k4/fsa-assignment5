@@ -1,5 +1,6 @@
 package fa.training.main;
 
+import fa.training.entities.Department;
 import fa.training.entities.Employee;
 import fa.training.entities.HourlyEmployee;
 import fa.training.entities.SalariedEmployee;
@@ -25,7 +26,8 @@ public class EmployeeManagement {
                 2. Display employees
                 3. Classify employees
                 4. Search book by(department, emp's name)
-                5. Exit
+                5. Report
+                6. Exit
                 
                 Please choose function you'd like to do:
                 """;
@@ -54,19 +56,25 @@ public class EmployeeManagement {
         start();
     }
 
-    public static void start() throws IOException {
-        departmentService.loadDepartments();
+    public static void start() {
+        if(departmentService.loadDepartments()){
+            System.out.println("Department loaded successfully");
+        }else{
+            System.out.println("Failed to load departments");
+            return;
+        }
         int choice;
         do{
             showMenu();
-            choice = inputValidOption(1,5);
+            choice = inputValidOption(1,6);
             switch(choice){
                 case 1 -> addEmployee();
                 case 2 -> displayEmployees();
                 case 3 -> classifyEmployees();
                 case 4 -> searchEmployees();
+                case 5 -> report();
             }
-        }while (choice != 5);
+        }while (choice != 6);
         saveData();
     }
 
@@ -198,6 +206,13 @@ public class EmployeeManagement {
             for(Employee employee : employees){
                 employee.display();
             }
+        }
+    }
+
+    private static void report(){
+        List<Department> departments = departmentService.findAll();
+        for(Department department : departments){
+            department.display();
         }
     }
 

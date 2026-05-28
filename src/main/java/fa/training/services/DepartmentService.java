@@ -5,8 +5,12 @@ import fa.training.entities.Employee;
 import fa.training.utils.Constants;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,7 +30,11 @@ public class DepartmentService {
         department.getListOfEmployee().add(employee);
         return true;
     }
-    public void loadDepartments() {
+    public boolean loadDepartments() {
+        Path path = Paths.get(Constants.INPUT_DEPARTMENT_PATH);
+        if(!Files.exists(path)) {
+            return false;
+        }
         List<String> departmentNames = new ArrayList<>();
         try(BufferedReader br = new BufferedReader(new FileReader(Constants.INPUT_DEPARTMENT_PATH))) {
             br.lines().forEach(departmentNames::add);
@@ -37,8 +45,13 @@ public class DepartmentService {
             Department department = new Department(departmentName);
             departments.add(department);
         });
-        System.out.println("Loaded " + departments.size() + " departments");
+        return true;
     }
+
+    public List<Department> findAll(){
+        return departments;
+    }
+
     public List<String> findAllNames(){
         return departments.stream().map(Department::getDepartmentName).collect(Collectors.toList());
     }

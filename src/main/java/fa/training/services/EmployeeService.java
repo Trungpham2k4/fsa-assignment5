@@ -6,12 +6,15 @@ import fa.training.utils.Constants;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class EmployeeService {
-    public List<Employee> employeeList;
+    private List<Employee> employeeList;
     public EmployeeService() {
         employeeList = new ArrayList<>();
     }
@@ -35,12 +38,18 @@ public class EmployeeService {
     }
 
     public boolean saveToFile(){
-        try(BufferedWriter bw = new BufferedWriter(new FileWriter(Constants.OUTPUT_EMPLOYEE_PATH))){
-            for (Employee employee : employeeList) {
-                bw.write(employee.toString());
-                bw.newLine();
+        Path path = Paths.get(Constants.OUTPUT_EMPLOYEE_PATH);
+        try{
+            if(path.getParent() != null && !Files.exists(path.getParent())){
+                Files.createDirectories(path.getParent());
             }
-            return true;
+            try(BufferedWriter bw = new BufferedWriter(new FileWriter(Constants.OUTPUT_EMPLOYEE_PATH))){
+                for (Employee employee : employeeList) {
+                    bw.write(employee.toString());
+                    bw.newLine();
+                }
+                return true;
+            }
         }catch (IOException e){
             return false;
         }

@@ -21,6 +21,7 @@ public class Department {
 
     public void display(){
         System.out.println("Department Name: " + departmentName);
+        System.out.println("Number of employees: " + listOfEmployee.size());
     }
 
     public Department(String departmentName) {
