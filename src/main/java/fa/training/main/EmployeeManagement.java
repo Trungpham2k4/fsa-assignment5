@@ -63,6 +63,11 @@ public class EmployeeManagement {
             System.out.println("Failed to load departments");
             return;
         }
+        if(employeeService.loadFromFile(departmentService)){
+            System.out.println("Employee loaded successfully");
+        }else{
+            System.out.println("Failed to load employee");
+        }
         int choice;
         do{
             showMenu();
@@ -217,7 +222,7 @@ public class EmployeeManagement {
     }
 
     private static void saveData() {
-        if(employeeService.saveToFile()){
+        if(employeeService.saveToFile(departmentService)){
             System.out.println("Saved data successfully");
         }else{
             System.out.println("Failed to save file");

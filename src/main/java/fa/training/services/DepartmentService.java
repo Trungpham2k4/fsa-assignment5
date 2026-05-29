@@ -5,7 +5,6 @@ import fa.training.entities.Employee;
 import fa.training.utils.Constants;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -31,12 +30,12 @@ public class DepartmentService {
         return true;
     }
     public boolean loadDepartments() {
-        Path path = Paths.get(Constants.INPUT_DEPARTMENT_PATH);
+        Path path = Paths.get(Constants.DATA_DEPARTMENT_PATH);
         if(!Files.exists(path)) {
             return false;
         }
         List<String> departmentNames = new ArrayList<>();
-        try(BufferedReader br = new BufferedReader(new FileReader(Constants.INPUT_DEPARTMENT_PATH))) {
+        try(BufferedReader br = new BufferedReader(new FileReader(Constants.DATA_DEPARTMENT_PATH))) {
             br.lines().forEach(departmentNames::add);
         }catch (IOException e){
             e.printStackTrace();

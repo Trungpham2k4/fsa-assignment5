@@ -82,13 +82,13 @@ public abstract class Employee implements Payable{
 
     @Override
     public String toString() {
-        return "Employee{" +
-                "ssn='" + ssn + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", birthDate='" + birthDate + '\'' +
-                ", phone='" + phone + '\'' +
-                ", email='" + email + '\'' +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append(ssn).append(",")
+                .append(firstName).append(",")
+                .append(lastName).append(",")
+                .append(birthDate).append(",")
+                .append(phone).append(",")
+                .append(email);
+        return sb.toString();
     }
 }

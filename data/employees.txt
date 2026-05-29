@@ -1,0 +1,3 @@
+SalariedEmployee,10000,trung,pham,10/10/2000,2000000,trungpdb@gmail.com,20.0,10.0,20.0,Finance
+SalariedEmployee,00001,John,Doe,10/10/1980,00000000,john.doe@abc.com,5.0,10.0,10.0,Technology
+HourlyEmployee,00002,Jane,Smith,15/05/1990,00000001,jane.smith@abc.com,20.0,40.0,HR

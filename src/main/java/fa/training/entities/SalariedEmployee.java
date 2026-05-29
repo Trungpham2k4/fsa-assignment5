@@ -56,16 +56,15 @@ public class SalariedEmployee extends Employee {
 
     @Override
     public String toString() {
-        return "SalariedEmployee{" +
-                "ssn='" + getSsn() + '\'' +
-                ", firstName='" + getFirstName() + '\'' +
-                ", lastName='" + getLastName() + '\'' +
-                ", birthDate='" + getBirthDate() + '\'' +
-                ", phone='" + getPhone() + '\'' +
-                ", email='" + getEmail() + '\'' +
-                ", commissionRate=" + commissionRate +
-                ", grossSales=" + grossSales +
-                ", basicSalary=" + basicSalary +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append("SalariedEmployee,");
+        sb.append(super.toString())
+                .append(",")
+                .append(getCommissionRate())
+                .append(",")
+                .append(getGrossSales())
+                .append(",")
+                .append(getBasicSalary());
+        return sb.toString();
     }
 }

@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Department {
     private String departmentName;
-    List<Employee> listOfEmployee;
+    private List<Employee> listOfEmployee;
 
     public String getDepartmentName() {
         return departmentName;

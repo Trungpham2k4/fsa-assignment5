@@ -45,15 +45,11 @@ public class HourlyEmployee extends Employee{
 
     @Override
     public String toString() {
-        return "HourlyEmployee{" +
-                "ssn='" + getSsn() + '\'' +
-                ", firstName='" + getFirstName() + '\'' +
-                ", lastName='" + getLastName() + '\'' +
-                ", birthDate='" + getBirthDate() + '\'' +
-                ", phone='" + getPhone() + '\'' +
-                ", email='" + getEmail() + '\'' +
-                ", wage=" + wage +
-                ", workingHours=" + workingHours +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append("HourlyEmployee,")
+                .append(super.toString())
+                .append(",").append(wage)
+                .append(",").append(workingHours);
+        return sb.toString();
     }
 }
